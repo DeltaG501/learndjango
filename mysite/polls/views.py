@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 
 from .models import Question, Choice
 
@@ -11,8 +12,13 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """返回最新的5个问题"""
-        return Question.objects.order_by('-pub_date')[:5]
+        """
+        返回最新的5个问题
+        且不包含pub_date在未来的问题
+        """
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
 
 
 # def index(request):
@@ -30,6 +36,9 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
+    def get_queryset(self):
+        """不允许访问 pub_date 发生在未来的问题 对应的详情页"""
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 # def detail(request, question_id):
