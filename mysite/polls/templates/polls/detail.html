@@ -5,11 +5,19 @@
     <title>Polls Details</title>
 </head>
 <body>
+<q>详情页，列出所选问题对应的选项，并允许投票。<br/>
+    如提交白卷则重定向本页并说明。否则进入结果页</q>
 <h1>{{ question.question_text }}</h1>
-<ul>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
 {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
 {% endfor %}
-</ul>
+<input type="submit" value="Vote">
+</form>
 </body>
 </html>
