@@ -2,8 +2,8 @@
 
 >  概要：
 >
->  + 讲述 Model 模型部分。怎么通过定义 python 类——而非 SQL 语句——实现和数据库交互。
->  + 并调用 shell 、后台页面 /admin.html 完成数据的 CRUD。
+>  + 讲述 Model **模型**。怎么通过定义 python 类——而非 SQL 语句——实现数据库操作。
+>  + 调用 **shell** 、后台页面 /admin.html 完成数据的 CRUD。
 
 ![image-20200704230324074](https://pic-1301887806.cos.ap-guangzhou.myqcloud.com/img/image-20200704230324074.png)
 
