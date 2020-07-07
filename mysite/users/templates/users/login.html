@@ -5,16 +5,16 @@
         <form action="" method="post">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">注册</legend>
+                <legend class="border-bottom mb-4">登录</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">注册</button>
+                <button class="btn btn-outline-info" type="submit">登录</button>
             </div>
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                已注册? <a class="ml-2" href="{% url 'login' %}">登录</a>
+                <a class="ml-2" href="{% url 'register' %}">注册</a>
             </small>
         </div>
     </div>
